@@ -1,9 +1,3 @@
-# use this to build a mongo_agent:candidate
-# then build mongo_agent_alignment from mongo_agent_base
-# docker build -t mongo_agent:candidate .
-# docker build -t dmlond/mongo_agent_alignment ../../mongo_agent_base
-# make sure to run the agent with -user bwa_user --workdir /home/bwa_user
-# since mongo_agent_base resets the USER to root
 FROM dmlond/bwa_samtools_base
 MAINTAINER Darin London <darin.london@duke.edu>
 
