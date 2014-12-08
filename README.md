@@ -40,9 +40,17 @@ the split_agent.
 ---Task Flow
 
 1. Human or other agent creates a task targetted to the alignment_agent, with a build, reference, and raw_file
-2. alignment_agent responds to this task, checks the reference and raw, and creates a task for the split_agent.
-3. split_agent splits the raw_file into subsets, and creates align_subset_agent targetted tasks for each subset.
-4. align_subset_agent aligns the subset against the reference to produced a sorted bam file.
+2. alignment_agent responds to this task, checks the reference and raw, and creates a task for the split_agent
+3. split_agent splits the raw_file into subsets, and creates align_subset_agent targetted tasks for each subset
+4. align_subset_agent aligns the subset against the reference to produced a sorted bam file
 5. merge_monitor monitors split_agent and align_subset_agents for a particular alignment parent_id until they
-   are finished, and then submits a task targetted to the merge_bam_agent.
-5. merge_bam_agent merges the subset_bams into a single bam file.
+   are finished, and then submits a task targetted to the merge_bam_agent
+5. merge_bam_agent merges the subset_bams into a single bam file
+
+
+input task: {agent_name: 'alignment_agent',
+             build: 'dirname of build directory in /home/bwa_user/bwa_indexed',
+             reference: 'filename of fasta file indexed in /home/bwa_user/bwa_indexed/build',
+             raw_file: 'filename of fastq file in /home/bwa_user/data',
+             ready: true
+            }
