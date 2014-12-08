@@ -31,3 +31,18 @@ be used to wire together each agent/monitor with a mongodb, and required data vo
 The agents all extend one or more of the [docker_bwa_aligner](https://github.com/dmlond/docker_bwa_aligner)
 applications by wrapping them in the ruby MongoAgents context.  Again, Docker is not absolutely required
 to run these, but it greatly helps.
+
+This particular agent responds to a task targetted to the alignment_agent, with the
+build, reference, and raw_file specified.  It checks that the raw_file exists, and that the reference and
+build files exist and are indexed by bwa and samtools. If so, it creates new tasks targetted to
+the split_agent.
+
+---Task Flow
+
+1. Human or other agent creates a task targetted to the alignment_agent, with a build, reference, and raw_file
+2. alignment_agent responds to this task, checks the reference and raw, and creates a task for the split_agent.
+3. split_agent splits the raw_file into subsets, and creates align_subset_agent targetted tasks for each subset.
+4. align_subset_agent aligns the subset against the reference to produced a sorted bam file.
+5. merge_monitor monitors split_agent and align_subset_agents for a particular alignment parent_id until they
+   are finished, and then submits a task targetted to the merge_bam_agent.
+5. merge_bam_agent merges the subset_bams into a single bam file.
