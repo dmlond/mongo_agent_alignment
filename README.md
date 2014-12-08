@@ -1,4 +1,4 @@
 mongo_agent_alignment
 =====================
 
-MongoAgent Next Generation Sequence Alignment
+Ruby MongoAgent:Agent Next Generation Sequence Alignment system
