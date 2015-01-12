@@ -12,4 +12,4 @@ ADD alignment_agent.rb /usr/local/bin/alignment_agent.rb
 RUN ["chmod", "777", "/usr/local/bin/alignment_agent.rb"]
 USER bwa_user
 WORKDIR /home/bwa_user
-CMD ["/user/local/bin/alignment_agent.rb"]
+CMD ["/usr/local/bin/alignment_agent.rb"]
